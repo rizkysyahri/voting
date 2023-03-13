@@ -56,7 +56,7 @@ export default function DetailParticipant() {
             mutateVoteApi();
             mutateParticipant();
             showAlert({
-              title: "Vote terkirim",
+              title: "Vote terkirim 🙏",
               message: "Terima kasih telah berpartisipasi 😊",
             });
           }
