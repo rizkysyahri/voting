@@ -106,7 +106,12 @@ export default function DetailOrEditVote() {
         title,
         startDateTime,
         endDateTime,
-        candidates,
+
+        candidates: candidates.map((c) => ({
+          name: c.name,
+          title: c.title,
+          key: c.key,
+        })),
       }),
     })
       .then((data) => {
