@@ -34,7 +34,7 @@ export default function Vote() {
           });
           return;
         }
-        router.push("/participant/kode-voting");
+        router.push(`/participant/${code}`);
         return;
       });
   };

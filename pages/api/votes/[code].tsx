@@ -1,4 +1,3 @@
-import { Votes } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { prisma } from "../../../lib/prisma";
@@ -19,7 +18,7 @@ export default async function handle(
 
   // Get Detail By Code
   if (req.method === "GET") {
-    const result = await prisma.votes.findFirst({
+    const vote = await prisma.votes.findFirst({
       select: {
         id: true,
         publisher: true,
@@ -37,12 +36,55 @@ export default async function handle(
       },
     });
 
-    if (!result) {
+    if (!vote) {
       return res.status(404).json({ message: "NOT_FOUND" });
     }
-    const response: Res<Votes> = {
+
+    // get participant of the vote
+
+    const participants = await prisma.participant.findMany({
+      select: {
+        candidate: true,
+        email: true,
+        createdAt: true,
+      },
+      where: {
+        code: code as string,
+      },
+    });
+
+    // Count vote for each candidate
+
+    var candidates: Candidate[] = [];
+    if (participants) {
+      candidates = vote?.candidates.map(candidate => {
+        const votes =
+          participants.filter(
+            participant => participant.candidate === candidate.name
+          ).length || 0;
+
+        return {
+          ...candidate,
+          votes,
+        };
+      }) as Candidate[];
+    }
+
+    const clientVote: Vote = {
+      id: vote.id,
+      publisher: vote.publisher,
+      title: vote.title,
+      code: vote.code,
+      candidates: candidates,
+      startDateTime: String(vote.startDateTime),
+      endDateTime: String(vote.endDateTime),
+      createdAt: String(vote.createdAt),
+      totalVotes: candidates ? candidates?.reduce((acc, candidate) => acc + (candidate.votes ? candidate.votes : 0), 0) : 0,
+    } as Vote;
+
+    const response: Res<Vote> = {
       status: 200,
-      data: result,
+      data: clientVote,
     };
 
     return res.json(response);
@@ -79,3 +121,4 @@ export default async function handle(
     return res.json(result);
   }
 }
+  

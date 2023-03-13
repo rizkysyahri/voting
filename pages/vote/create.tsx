@@ -118,7 +118,7 @@ export default function CreateVote() {
 
       <Menu />
 
-      <div className="py-10 ">
+      <div className="py-10 justify-items-center">
         <Image
           alt="Create Vote"
           src={"/assets/create-vote.svg"}

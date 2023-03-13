@@ -128,7 +128,7 @@ const Home: NextPage = () => {
                         {moment(vote.endDateTime).format("DD MMM YYYY hh:mm a")}
                       </td>
                       <td className="p-5 text-left">
-                        <a href="#">
+                        <a href={`/participant/${vote.code}`}>
                           <LinkIcon className="w-8 h-8 p-2 hover:bg-zinc-100 rounded-lg" />
                         </a>
                         <button onClick={() => handleDelete(vote.code)}>
