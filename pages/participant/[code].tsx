@@ -18,6 +18,8 @@ export const STATE_NOT_STARTED = "STATE_NOT_STARTED",
   STATE_LOADING = "STATED_LOADING";
 
 export default function detailParticipant() {
+  const { data: session } = useSession();
+
   const router = useRouter();
   const { code } = router.query;
   const { data: dataVoteAPi, mutate: mutateVoteApi } = useVote(code as string);
@@ -26,6 +28,8 @@ export default function detailParticipant() {
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
     null
   );
+
+  const [currentState, setCurrentState] = useState(STATE_LOADING);
 
   const submitVote = () => {
     if (selectedCandidate) {
@@ -43,6 +47,7 @@ export default function detailParticipant() {
               },
               body: JSON.stringify({
                 candidate: selectedCandidate.name,
+                email: session?.user?.email!,
               }),
             }
           );
@@ -50,7 +55,6 @@ export default function detailParticipant() {
           if (res.status === 200) {
             mutateVoteApi();
             mutateParticipant();
-
             showAlert({
               title: "Vote terkirim",
               message: "Terima kasih telah berpartisipasi 😊",
@@ -65,8 +69,6 @@ export default function detailParticipant() {
       });
     }
   };
-
-  const [currentState, setCurrentState] = useState(STATE_LOADING);
 
   useEffect(() => {
     if (dataVoteAPi && dataVoteAPi.data) {
@@ -105,8 +107,6 @@ export default function detailParticipant() {
       }
     }
   }, [dataParticipantApi, dataVoteAPi]);
-
-  const { data: session } = useSession();
 
   if (!session) {
     return <RestrictedPage />;
@@ -148,6 +148,7 @@ export default function detailParticipant() {
                 }}
                 isSelected={selectedCandidate?.name === candidate.name}
                 name={candidate.name}
+                key={candidate.key}
                 index={candidate.key}
                 title={"kandidat" + candidate.key}
                 percentage={
@@ -156,7 +157,6 @@ export default function detailParticipant() {
                       100
                     : 0
                 }
-                key={index}
               />
             )
           )}
