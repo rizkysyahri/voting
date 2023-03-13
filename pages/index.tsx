@@ -134,9 +134,7 @@ const Home: NextPage = () => {
                   </tr>
                 ))
               ) : (
-                <tr>
-                  <td>"Belum ada votes yang dibuat"</td>
-                </tr>
+                <div>Belum ada votes yang dibuat</div>
               )}
             </tbody>
           </table>
