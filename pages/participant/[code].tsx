@@ -17,7 +17,7 @@ export const STATE_NOT_STARTED = "STATE_NOT_STARTED",
   STATE_ENDED = "STATE_ENDED",
   STATE_LOADING = "STATED_LOADING";
 
-export default function detailParticipant() {
+export default function DetailParticipant() {
   const { data: session } = useSession();
 
   const router = useRouter();
