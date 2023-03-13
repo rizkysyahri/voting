@@ -134,7 +134,11 @@ const Home: NextPage = () => {
                   </tr>
                 ))
               ) : (
-                <div>Belum ada votes yang dibuat</div>
+                <tr>
+                  <td colSpan={7} className="p-5 text-center">
+                    Belum ada votes yang dibuat
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>
