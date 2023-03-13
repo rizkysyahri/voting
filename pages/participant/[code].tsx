@@ -94,7 +94,7 @@ export default function DetailParticipant() {
 
       return () => clearInterval(interval);
     }
-  }, [dataVoteAPi]);
+  }, [dataVoteAPi, currentState]);
 
   useEffect(() => {
     if (dataParticipantApi && dataVoteAPi) {
