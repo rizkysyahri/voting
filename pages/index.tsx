@@ -19,11 +19,11 @@ const Home: NextPage = () => {
   const [votes, setVotes] = useState<Votes[]>();
 
   const handleDelete = (code: string) => {
-     showAlert({
+    showAlert({
       title: "Anda Yakin?",
       message: "ingin menghapus data ini?",
       onPositiveClick: () => {
-        fetch(`/api/votes/${code}` , {
+        fetch(`/api/votes/${code}`, {
           method: "DELETE",
         })
           .then(() => {
@@ -101,43 +101,43 @@ const Home: NextPage = () => {
             </thead>
 
             <tbody>
-              {votes && votes.length > 0
-                ? votes.map((vote: Votes, index: number) => (
-                    <tr key={index}>
-                      <td className="p-5 text-left">{index + 1}</td>
-                      <td className="p-5 text-left text-blue-500">
-                        <a href={`/vote/${vote.code}`}>{vote.title}</a>
-                      </td>
-                      <td className="p-5 text-left">
-                        {vote.candidates.map((c: Candidate, index: number) => (
-                          <span key={index}>
-                            {c.name +
-                              (index < vote.candidates.length - 1
-                                ? " vs "
-                                : "")}
-                          </span>
-                        ))}
-                      </td>
-                      <td className="p-5 text-left font-bold">{vote.code}</td>
-                      <td className="p-5 text-left">
-                        {moment(vote.startDateTime).format(
-                          "DD MMM YYYY hh:mm a"
-                        )}
-                      </td>
-                      <td className="p-5 text-left">
-                        {moment(vote.endDateTime).format("DD MMM YYYY hh:mm a")}
-                      </td>
-                      <td className="p-5 text-left">
-                        <a href={`/participant/${vote.code}`}>
-                          <LinkIcon className="w-8 h-8 p-2 hover:bg-zinc-100 rounded-lg" />
-                        </a>
-                        <button onClick={() => handleDelete(vote.code)}>
-                          <TrashIcon className="w-8 h-8 p-2 hover:bg-zinc-100 rounded-lg" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                : "Belum ada votes yang dibuat"}
+              {votes && votes.length > 0 ? (
+                votes.map((vote: Votes, index: number) => (
+                  <tr key={index}>
+                    <td className="p-5 text-left">{index + 1}</td>
+                    <td className="p-5 text-left text-blue-500">
+                      <a href={`/vote/${vote.code}`}>{vote.title}</a>
+                    </td>
+                    <td className="p-5 text-left">
+                      {vote.candidates.map((c: Candidate, index: number) => (
+                        <span key={index}>
+                          {c.name +
+                            (index < vote.candidates.length - 1 ? " vs " : "")}
+                        </span>
+                      ))}
+                    </td>
+                    <td className="p-5 text-left font-bold">{vote.code}</td>
+                    <td className="p-5 text-left">
+                      {moment(vote.startDateTime).format("DD MMM YYYY hh:mm a")}
+                    </td>
+                    <td className="p-5 text-left">
+                      {moment(vote.endDateTime).format("DD MMM YYYY hh:mm a")}
+                    </td>
+                    <td className="p-5 text-left">
+                      <a href={`/participant/${vote.code}`}>
+                        <LinkIcon className="w-8 h-8 p-2 hover:bg-zinc-100 rounded-lg" />
+                      </a>
+                      <button onClick={() => handleDelete(vote.code)}>
+                        <TrashIcon className="w-8 h-8 p-2 hover:bg-zinc-100 rounded-lg" />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>"Belum ada votes yang dibuat"</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
