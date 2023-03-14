@@ -52,8 +52,9 @@ export default function Login({ providers }: any) {
       <Link href={"/"} className="text-6xl mb-10 font-bold ">
         EmVote
       </Link>
-      <div className="w-1/2">
-        {Object.values(providers).map((provider: any) => (
+
+      {Object.values(providers).map((provider: any) => (
+        <div key={provider.name} className="w-1/3">
           <button
             className="inline-flex justify-center items-center bg-white py-2 w-full border-2 border-black font-medium hover:bg-black hover:text-white"
             onClick={() => signIn(provider.id)}
@@ -61,8 +62,8 @@ export default function Login({ providers }: any) {
             {provider.name === "Google" && googleIcon}
             Login dengan {provider.name}
           </button>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
