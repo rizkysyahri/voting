@@ -46,7 +46,7 @@ export default function Login({providers}: any) {
       </Head>
 
       <Link href={"/"} className="text-6xl mb-10 font-bold ">
-        
+        EmVote
       </Link>
       <div className="w-1/2">
         {Object.values(providers).map((provider: any) => (
