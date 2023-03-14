@@ -13,7 +13,7 @@ export default function Menu() {
   return (
     <div className="flex justify-between py-2 font-mono m-5 ">
       <Image
-        src={"/assets/frame 2.svg"}
+        src={"/assets/Frame 2.svg"}
         width={60}
         height={100}
         alt="emVote"
