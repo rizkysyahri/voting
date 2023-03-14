@@ -6,10 +6,6 @@ import { useRouter } from "next/router";
 export default function Login({ providers }: any) {
   const { data: session } = useSession();
   const router = useRouter();
-  const handleLoginButton = (e: any) => {
-    e.preventDefault();
-    signIn();
-  };
   const googleIcon = (
     <svg
       className="mr-2 -ml-1 w-4 h-4"
@@ -50,12 +46,12 @@ export default function Login({ providers }: any) {
       </Head>
 
       <Link href={"/"} className="text-6xl mb-10 font-bold ">
-        EmVote
+        Emvote
       </Link>
-
-      {Object.values(providers).map((provider: any) => (
-        <div key={provider.name} className="w-1/3">
+        {Object.values(providers).map((provider: any) => (
+      <div className="w-1/3">
           <button
+            key={provider.id}
             className="inline-flex justify-center items-center bg-white py-2 w-full border-2 border-black font-medium hover:bg-black hover:text-white"
             onClick={() => signIn(provider.id)}
           >
@@ -63,8 +59,8 @@ export default function Login({ providers }: any) {
             Login dengan {provider.name}
           </button>
         </div>
-      ))}
-    </div>
+        ))}
+      </div>
   );
 }
 
