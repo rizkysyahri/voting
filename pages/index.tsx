@@ -56,13 +56,13 @@ const Home: NextPage = () => {
       {/* <Header> */}
 
       <div className="flex flex-col place-items-center  py-36 space-y-3 drop-shadow-2xl">
-        <h1 className="text-4xl font-bold">Ayo Mulai Voting</h1>
-        <h2 className="text-lg bg-zinc-100 px-3 py-1">
+        <h1 className="text-4xl font-bold">Voting</h1>
+        <h2 className="text-lg bg-zinc-200 px-3 py-1">
           Web Voting Irmas Al-Amin
         </h2>
         <Image
           alt={"Header"}
-          src={"/assets/Header.svg"}
+          src={"/assets/mosque.svg"}
           width={274}
           height={243}
         />
@@ -75,7 +75,6 @@ const Home: NextPage = () => {
           />
           <Button
             text="Ikutan Vote"
-            type="secondary"
             className="font-bold"
             onClick={() => router.push("/participant")}
           />
@@ -100,7 +99,7 @@ const Home: NextPage = () => {
               </tr>
             </thead>
 
-            <tbody>
+            <tbody className="bg-zinc-100">
               {votes && votes.length > 0 ? (
                 votes.map((vote: Votes, index: number) => (
                   <tr key={index}>

@@ -11,7 +11,7 @@ export default function RestrictedPage() {
       </Head>
 
       <Image
-        src={"/assets/restriced.svg"}
+        src={"/assets/payment 2.svg"}
         alt="restricted"
         width={200}
         height={200}

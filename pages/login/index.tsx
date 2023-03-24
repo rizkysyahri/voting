@@ -52,7 +52,7 @@ export default function Login({ providers }: any) {
         {Object.values(providers).map((provider: any) => (
           <button
             key={provider.id}
-            className="inline-flex justify-center items-center bg-white py-2 w-full border-2 border-black font-medium hover:bg-black hover:text-white"
+            className="inline-flex justify-center items-center bg-white py-2 w-full font-bold border-2 border-black hover:bg-black hover:text-white"
             onClick={() => signIn(provider.id, { callbackUrl: "/" })}
           >
             {provider.name === "Google" && googleIcon}
