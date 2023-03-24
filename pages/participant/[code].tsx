@@ -11,6 +11,7 @@ import Menu from "../../components/Menu";
 import RestrictedPage from "../../components/RestrictedPage";
 import useVote from "../../lib/useVote";
 import useParticipant from "../../lib/useParticipant";
+import ButtonWithAnimation from "../../components/ButtonWithAnimation";
 
 export const STATE_NOT_STARTED = "STATE_NOT_STARTED",
   STATE_STARTED = "STATE_STARTED",
@@ -30,9 +31,12 @@ export default function DetailParticipant() {
   );
 
   const [currentState, setCurrentState] = useState(STATE_LOADING);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitVote = () => {
     if (selectedCandidate) {
+      setIsSubmitting(true);
+
       showAlert({
         title: "Apakah kamu yakin?",
         message: "Kamu akan memilih kandidat" + selectedCandidate.name,
@@ -168,11 +172,12 @@ export default function DetailParticipant() {
           {session?.user?.email != dataVoteAPi?.data?.publisher &&
             !dataParticipantApi?.data &&
             currentState === STATE_STARTED && (
-              <Button
+              <ButtonWithAnimation
                 text="Kirim Vote Saya 🙂"
                 onClick={() => {
                   submitVote();
                 }}
+                disabled={isSubmitting}
               />
             )}
 

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "./Button";
 import { createRoot } from "react-dom/client";
 
 interface Props {
@@ -31,9 +30,9 @@ function Alert(props: Props) {
               <p className="text-2xl font-bold">{props.title || "title"}</p>
               <p className="text-lg">{props.message || "Message Here"}</p>
 
-              <div className="space-x-3 mt-5">
+              <div className="space-x-3 mt-5 font-bold">
                 <button
-                  className="text-sm bg-zinc-100 px-2 py-1"
+                  className="text-sm bg-zinc-100 px-2 py-1 hover:bg-zinc-200"
                   onClick={() => {
                     if (props.onNegativeClick) {
                       props.onNegativeClick();
@@ -43,16 +42,17 @@ function Alert(props: Props) {
                 >
                   {props.negativeBtnText || "Kembali"}
                 </button>
-                <Button
-                  className={`${!props.onPositiveClick && "hidden"}`}
+                <button
+                  className="text-sm bg-zinc-100 px-2 py-1 hover:bg-zinc-200"
                   onClick={() => {
                     if (props.onPositiveClick) {
                       props.onPositiveClick();
                     }
                     setIsOpen(false);
                   }}
-                  text={props.positiveBtnText || "Ya"}
-                />
+                >
+                  {props.positiveBtnText || "Ya"}
+                </button>
               </div>
             </div>
           </div>
