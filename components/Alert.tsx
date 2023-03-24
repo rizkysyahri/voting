@@ -22,9 +22,9 @@ function Alert(props: Props) {
     >
       <div className="fixed inset-0 bg-zinc-900 bg-opacity-40 transition-opacity"></div>
 
-      <div className="fixed inset-0 z-10 overflow-y-auto">
-        <div className="flex min-h-full items-end justify-center text-center sm:items-center">
-          <div className="relative transform overflow-hidden bg-white text-left shadow-xl transition-all p-4 rounded-md">
+      <div className="fixed inset-0 z-10 overflow-y-auto sm:mx-auto">
+        <div className="flex min-h-full items-end justify-center text-center sm:items-center sm:p-0" style={{alignItems: 'center'}}>
+          <div className="relative transform overflow-hidden bg-white text-left shadow-xl transition-all p-4 rounded-md sm:max-w-md sm:w-full sm:p-6">
             {/* <content/> */}
             <div className="w-full p-5 text-center">
               <p className="text-2xl font-bold">{props.title || "title"}</p>
