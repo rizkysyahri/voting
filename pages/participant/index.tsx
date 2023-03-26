@@ -59,7 +59,7 @@ export default function Vote() {
       <h1 className="text-4xl font-bold">Ikutan Voting</h1>
       <h1 className="w-1/3 text-center">
         Untuk ikutan Voting, Kamu harus memasukkan kode voting yang sudah di
-        berikan panitia/penyelenggara
+        berikan pembuat
       </h1>
 
       <Form
